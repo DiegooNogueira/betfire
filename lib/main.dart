@@ -1,5 +1,8 @@
-import 'package:betfire/view/splash.dart';
+//Imports
 import 'package:flutter/material.dart';
+
+//Telas
+import 'package:betfire/view/splash.dart';
 
 void main() {
   runApp(MyApp());
