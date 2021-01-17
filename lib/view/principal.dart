@@ -1,3 +1,4 @@
+//Imports
 import 'package:flutter/material.dart';
 
 class Principal extends StatefulWidget {
@@ -9,6 +10,8 @@ class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      //AppBar com Imagem no Centro
       appBar: AppBar(
         title: Image.asset(
           "imagens/logoBetFire.png",
