@@ -7,17 +7,18 @@ class Desenvolvedores extends StatefulWidget {
 }
 
 class _DesenvolvedoresState extends State<Desenvolvedores> {
-  
   //variavel de estilo de texto
   var textStyle = TextStyle(fontSize: 17);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange[800],
+      appBar: AppBar(
+        backgroundColor: Colors.orange[700],
+        title: Text('Desenvolvedores'),
+        centerTitle: true,
+      ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           //Imagem central do projeto
           Center(
@@ -31,72 +32,75 @@ class _DesenvolvedoresState extends State<Desenvolvedores> {
             height: MediaQuery.of(context).size.height * 0.008,
           ),
           Container(
-
-                //Linha com os avatares e nomes dos desenvolvedores
-                child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage("imagens/logoBetFire.png"),
-                        ),
-                        Text(
-                          "Diego\n"
-                          "Técnico em Informática",
-                          textAlign: TextAlign.center,
-                          style: textStyle,
-                        ),
-                      ],
+              margin: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(7.0),
+              //Linha com os avatares e nomes dos desenvolvedores
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("imagens/logoBetFire.png"),
+                          ),
+                          Text(
+                            "Diego\n"
+                            "Técnico em Informática",
+                            textAlign: TextAlign.center,
+                            style: textStyle,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage("imagens/logoBetFire.png"),
-                        ),
-                        Text(
-                          "João\n"
-                          "Técnico em Informática",
-                          textAlign: TextAlign.center,
-                          style: textStyle,
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("imagens/logoBetFire.png"),
+                          ),
+                          Text(
+                            "João\n"
+                            "Técnico em Informática",
+                            textAlign: TextAlign.center,
+                            style: textStyle,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage("imagens/logoBetFire.png"),
-                        ),
-                        Text(
-                          "Maria\n"
-                          "Técnico em Informática",
-                          textAlign: TextAlign.center,
-                          style: textStyle,
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("imagens/logoBetFire.png"),
+                          ),
+                          Text(
+                            "Maria\n"
+                            "Técnico em Informática",
+                            textAlign: TextAlign.center,
+                            style: textStyle,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ))
+                ],
+              ))
         ],
       ),
-
     );
   }
 }
