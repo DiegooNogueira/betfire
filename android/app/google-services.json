@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "209509348334",
+    "project_id": "betfire-4f560",
+    "storage_bucket": "betfire-4f560.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209509348334:android:34fb4cc9af2fe14b8354ff",
+        "android_client_info": {
+          "package_name": "com.example.betfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209509348334-o33hc7r0a0ovtl8crn85dftdesidigof.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.betfire",
+            "certificate_hash": "82118550a36ca9427b27a0d5bf40e8e716a43275"
+          }
+        },
+        {
+          "client_id": "209509348334-9b7q8g7ahih860k3kjg3hkdn7a5rfikp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYNloQDbA0chAnciWLJf4RIUvm4ag_m18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "209509348334-9b7q8g7ahih860k3kjg3hkdn7a5rfikp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
