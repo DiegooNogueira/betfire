@@ -1,10 +1,10 @@
 //Imports
+import 'package:betfire/auth/functionsAuth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 //Telas
 import 'package:betfire/auth/cadastro.dart';
-
 
 class Login extends StatefulWidget {
   @override
@@ -12,6 +12,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  //instanciando classe de funcoes com o bd
+  FunctionsAuth functionsAuth = FunctionsAuth();
+  var _form = GlobalKey<FormState>();
 
   //Controladores
   TextEditingController controladorEmail = TextEditingController();
@@ -24,7 +28,6 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-
           //Allinhamento da Imagem
           Center(
             child: Image.asset(
@@ -43,63 +46,64 @@ class _LoginState extends State<Login> {
                   fontSize: MediaQuery.of(context).size.height * 0.032,
                 ),
               )),
-          
+
           Padding(
             padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+            child: Form(
+              key: _form,
+              //Coluna com os Inputs: Email e senha
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //Borda dos Inputs
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      color: Colors.white,
 
-            //Coluna com os Inputs: Email e senha
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-
-                //Borda dos Inputs
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Colors.white,
-
-                    //Chamando Classe dos Inputs
-                    child: formulario(
-                        TextInputType.emailAddress,
-                        "Digite seu email",
-                        false,
-                        Icon(
-                          Icons.email,
-                          color: Colors.orange[800],
-                        ),
-                        false,
-                        controladorEmail),
+                      //Chamando Classe dos Inputs
+                      child: formulario(
+                          TextInputType.emailAddress,
+                          "Digite seu email",
+                          false,
+                          Icon(
+                            Icons.email,
+                            color: Colors.orange[800],
+                          ),
+                          false,
+                          controladorEmail),
+                    ),
                   ),
-                ),
 
-                //Espaçamento entre os Inputs
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.032,
-                ),
-
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Colors.white,
-                    child: formulario(
-                        TextInputType.emailAddress,
-                        "Digite sua Senha",
-                        true,
-                        Icon(
-                          Icons.vpn_key,
-                          color: Colors.orange[800],
-                        ),
-                        true,
-                        controladorSenha),
+                  //Espaçamento entre os Inputs
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.032,
                   ),
-                ),
-              ],
+
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      color: Colors.white,
+                      child: formulario(
+                          TextInputType.emailAddress,
+                          "Digite sua Senha",
+                          true,
+                          Icon(
+                            Icons.vpn_key,
+                            color: Colors.orange[800],
+                          ),
+                          true,
+                          controladorSenha),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
           //FrontEnd Esqueceu Senha
           Container(
-           padding: EdgeInsets.only(top: 5.0),
+            padding: EdgeInsets.only(top: 5.0),
             alignment: Alignment.centerRight,
             child: FlatButton(
                 child: Text(
@@ -126,7 +130,11 @@ class _LoginState extends State<Login> {
               color: Colors.yellow,
               textColor: Colors.black,
               padding: EdgeInsets.all(8.0),
-              onPressed: () {},
+              //chamando funcao de login
+              onPressed: () async => await functionsAuth.loginEmailSenha(
+                  email: controladorEmail.text,
+                  senha: controladorSenha.text,
+                  context: context),
               child: Text(
                 "Login".toUpperCase(),
                 style: TextStyle(

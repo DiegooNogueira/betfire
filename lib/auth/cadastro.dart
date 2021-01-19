@@ -1,4 +1,5 @@
 //Imports
+import 'package:betfire/auth/functionsAuth.dart';
 import 'package:flutter/material.dart';
 
 class Cadastro extends StatefulWidget {
@@ -7,12 +8,16 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
-  
+
+  FunctionsAuth functionsAuth = FunctionsAuth();
+
   //Controladores: Nome, Email, Senha e ConfSenha
   TextEditingController controladorNome = TextEditingController();
   TextEditingController controladorSenha = TextEditingController();
   TextEditingController controladorEmail = TextEditingController();
   TextEditingController controladorConfSenha = TextEditingController();
+
+  var _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,6 @@ class _CadastroState extends State<Cadastro> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-
           //Imagem na parte superior do Projeto
           Center(
             child: Image.asset(
@@ -44,81 +48,84 @@ class _CadastroState extends State<Cadastro> {
           //Espaçamento da Coluna dos Inputs
           Padding(
             padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Colors.white,
-                    child: formulario(TextInputType.text, "Digite seu Nome",
-                        false, null, false, controladorNome),
+            child: Form(
+              key: _form,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      color: Colors.white,
+                      child: formulario(TextInputType.text, "Digite seu Nome",
+                          false, null, false, controladorNome),
+                    ),
                   ),
-                ),
 
-                //Espaçamento entre os Inputs
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.024,
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Colors.white,
-                    child: formulario(
-                        TextInputType.emailAddress,
-                        "Digite seu email",
-                        false,
-                        Icon(
-                          Icons.email,
-                          color: Colors.orange[800],
-                        ),
-                        false,
-                        controladorEmail),
+                  //Espaçamento entre os Inputs
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.024,
                   ),
-                ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      color: Colors.white,
+                      child: formulario(
+                          TextInputType.emailAddress,
+                          "Digite seu email",
+                          false,
+                          Icon(
+                            Icons.email,
+                            color: Colors.orange[800],
+                          ),
+                          false,
+                          controladorEmail),
+                    ),
+                  ),
 
-                //Espaçamento entre os Inputs
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.024,
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Colors.white,
-                    child: formulario(
-                        TextInputType.emailAddress,
-                        "Digite sua Senha",
-                        true,
-                        Icon(
-                          Icons.vpn_key,
-                          color: Colors.orange[800],
-                        ),
-                        true,
-                        controladorSenha),
+                  //Espaçamento entre os Inputs
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.024,
                   ),
-                ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      color: Colors.white,
+                      child: formulario(
+                          TextInputType.emailAddress,
+                          "Digite sua Senha",
+                          true,
+                          Icon(
+                            Icons.vpn_key,
+                            color: Colors.orange[800],
+                          ),
+                          true,
+                          controladorSenha),
+                    ),
+                  ),
 
-                //Espaçamento entre os Inputs
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.024,
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Container(
-                    color: Colors.white,
-                    child: formulario(
-                        TextInputType.emailAddress,
-                        "Digite sua Senha Novamente",
-                        true,
-                        Icon(
-                          Icons.vpn_key,
-                          color: Colors.orange[800],
-                        ),
-                        true,
-                        controladorConfSenha),
+                  //Espaçamento entre os Inputs
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.024,
                   ),
-                ),
-              ],
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      color: Colors.white,
+                      child: formulario(
+                          TextInputType.emailAddress,
+                          "Digite sua Senha Novamente",
+                          true,
+                          Icon(
+                            Icons.vpn_key,
+                            color: Colors.orange[800],
+                          ),
+                          true,
+                          controladorConfSenha),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -138,7 +145,17 @@ class _CadastroState extends State<Cadastro> {
               color: Colors.yellow,
               textColor: Colors.black,
               padding: EdgeInsets.all(8.0),
-              onPressed: () {},
+              
+              //chamando funcao de cadastro
+              onPressed: () async {
+                  if (_form.currentState.validate()) {
+                    await functionsAuth.cadastroEmailSenha(
+                        email: controladorEmail.text,
+                        senha: controladorSenha.text,
+                        nome: controladorNome.text,
+                        context: context);
+                  }
+                },
               child: Text(
                 "Cadastrar-se".toUpperCase(),
                 style: TextStyle(
