@@ -1,3 +1,4 @@
+
 //Imports
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -47,3 +48,4 @@ class _State extends State<Splash> {
     );
   }
 }
+
