@@ -26,6 +26,9 @@ class _CadastroState extends State<Cadastro> {
       body: SingleChildScrollView(
           child: Column(
         children: [
+          SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.032,
+                  ),
           //Imagem na parte superior do Projeto
           Center(
             child: Image.asset(

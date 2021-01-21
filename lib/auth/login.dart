@@ -28,7 +28,11 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          //Allinhamento da Imagem
+          
+          SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.032,
+                  ),
+                  //Allinhamento da Imagem
           Center(
             child: Image.asset(
               "imagens/logoBetFire.png",

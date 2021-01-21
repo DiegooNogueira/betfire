@@ -1,10 +1,10 @@
-//Imports
 import 'package:flutter/material.dart';
-
-//Telas
+import 'package:firebase_core/firebase_core.dart';
 import 'package:betfire/view/splash.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

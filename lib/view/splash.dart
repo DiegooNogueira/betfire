@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 //telas
-import 'package:betfire/nav.dart';
+import 'package:betfire/auth/login.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _State extends State<Splash> {
   //rota de destino depois do timer
   route() {
     Navigator.pushReplacement(context,
-        PageTransition(child: Nav(), type: PageTransitionType.bottomToTop));
+        PageTransition(child: Login(), type: PageTransitionType.bottomToTop));
   }
 
   @override
