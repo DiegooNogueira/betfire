@@ -1,12 +1,14 @@
 //Imports
-import 'package:betfire/view/infos/desenvolvedores.dart';
-import 'package:betfire/view/infos/sobre.dart';
-import 'package:betfire/view/user/conta.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 
 //Telas
 import 'package:betfire/view/home/principal.dart';
 import 'package:betfire/view/home/cenario.dart';
+import 'package:betfire/view/infos/desenvolvedores.dart';
+import 'package:betfire/view/infos/sobre.dart';
+import 'package:betfire/view/user/conta.dart';
+import 'package:betfire/view/home/search.dart';
 
 class Nav extends StatefulWidget {
   @override
@@ -99,6 +101,15 @@ class _NavState extends State<Nav> {
 
         //corpo da tela que vai ser alterado pela variavel de tela
         body: _index == 0 ? Principal() : Cenario(),
+
+        floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () => Navigator.push(
+                    context,
+                    PageTransition(
+                        child: Search(),
+                        type: PageTransitionType.rightToLeft)),
+                backgroundColor: Colors.green),
 
         //botões que ficam na parte inferioi da tela
         bottomNavigationBar: BottomNavigationBar(
