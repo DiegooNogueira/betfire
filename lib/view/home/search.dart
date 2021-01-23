@@ -1,4 +1,4 @@
-//Imports
+//---- Packages
 import 'package:flutter/material.dart';
 
 class Search extends StatefulWidget {

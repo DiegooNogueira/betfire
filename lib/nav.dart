@@ -1,4 +1,4 @@
-//Imports
+//---- Packages
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 
@@ -103,13 +103,13 @@ class _NavState extends State<Nav> {
         body: _index == 0 ? Principal() : Cenario(),
 
         floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
+                child: Icon(Icons.search),
                 onPressed: () => Navigator.push(
                     context,
                     PageTransition(
                         child: Search(),
                         type: PageTransitionType.rightToLeft)),
-                backgroundColor: Colors.green),
+                backgroundColor: Colors.orange[800]),
 
         //botões que ficam na parte inferioi da tela
         bottomNavigationBar: BottomNavigationBar(
