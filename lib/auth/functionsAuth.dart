@@ -2,11 +2,45 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+//API
+import 'package:betfire/firebase/api_firebase.dart';
 
 //Telas
 import 'package:betfire/nav.dart';
 class FunctionsAuth {
+
   FirebaseAuth auth = FirebaseAuth.instance;
+  DocumentSnapshot dataUserr;
+
+  //---- Functions
+  Future searchUser() async {
+    dataUserr = await firebaseFirestore
+        .collection("users")
+        .doc(auth.currentUser.uid)
+        .get();
+  }
+
+  Future<File> getData() async {
+    final directory = await getApplicationDocumentsDirectory();
+    return File("${directory.path}/data.json");
+  }
+
+  Future saveData(
+      {String name,
+      String email,
+      String password,
+      FirebaseAuth auth}) async {
+    final file = await getData();
+
+    print("Dado do usuário: ${dataUserr.data()}");
+
+    await file.writeAsString(jsonEncode(dataUserr.data()));
+  }
 
   //-------------------------  CADASTRO   ---------------------------------//
 
@@ -15,6 +49,23 @@ class FunctionsAuth {
     try {
       //criando usuario com email e senha
       await auth.createUserWithEmailAndPassword(email: email, password: senha);
+
+      await dataUser.addUser({          
+        "email": email,
+        "name": nome,
+        "senha": senha,
+        "carrousel": 'true',
+        'login': 'true',
+      });
+
+      await searchUser();
+
+      await saveData();
+
+      User userr = FirebaseAuth.instance.currentUser;
+
+      await userr.sendEmailVerification();
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Nav()),
@@ -57,6 +108,11 @@ class FunctionsAuth {
     try {
       //logando com email e senha
       await auth.signInWithEmailAndPassword(email: email, password: senha);
+
+      await searchUser();
+
+      await saveData();
+
       await Navigator.pushAndRemoveUntil(
           context,
           PageTransition(child: Nav(), type: PageTransitionType.bottomToTop),
